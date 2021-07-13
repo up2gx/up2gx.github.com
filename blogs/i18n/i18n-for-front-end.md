@@ -8,18 +8,18 @@
 
 这就要求我们在进行软件开发的时候，不能为每个语言环境都开发一个单独的版本，这样浪费了大量的开发成本，而应该将需要翻译和替换的文字、图片等资源从代码中提取出来，通过配置文件的形式进行管理，我们把抽取后的项目成为**国际化通用版项目**，配置文件称为**语言包**，那么**国际化通用版项目** + 不同语言环境的**语言包**就能够使项目支持对应语言环境：
 
-![国际化项目 + 不同语言包](/Users/mark/Desktop/tsc/PPT素材/国际化项目 + 不同语言包.png)
+![国际化项目 + 不同语言包](../../assets/i18n/国际化项目加不同语言包.png)
 
 ### 现状
 
 有了这个目标，我们再来看目前基于 Vue 前端项目在进行国际化的时候通常是怎么做的，大多数情况下我们都选用的是 Vue 官方推荐的 vue-i18n 方案，常规方式使用 vue-i18n 实现国际化大概需要以下几步：
 
-1. 开发人员使用源语言（中文）开发项目；![image-20210712214332988](/Users/mark/Library/Application Support/typora-user-images/image-20210712214332988.png)
-2. 当国际化需求来时，开发人员手动根据源码中的中文抽取语言包定义；![image-20210712214341544](/Users/mark/Library/Application Support/typora-user-images/image-20210712214341544.png)
-3. 开发人员将代码中源语言文本改写为对应 key 及标记方法；![image-20210712214401290](/Users/mark/Library/Application Support/typora-user-images/image-20210712214401290.png)
+1. 开发人员使用源语言（中文）开发项目；![源码中编写](../../assets/i18n/1、源码中编写.png)
+2. 当国际化需求来时，开发人员手动根据源码中的中文抽取语言包定义；![提取语言包](../../assets/i18n/2、提取语言包.png)
+3. 开发人员将代码中源语言文本改写为对应 key 及标记方法；![重新写回代码中](../../assets/i18n/3、重新写回代码中.png)
 4. 开发人员将源语言包定义整理成翻译人员需要的源语言包，交给翻译人员；
 5. 翻译人员翻译完后将目标语言（如英文）包返回给开发人员；
-6. 开发人员将目标语言包整理成代码中可用的语言包后，引入项目；![image-20210712214414125](/Users/mark/Library/Application Support/typora-user-images/image-20210712214414125.png)
+6. 开发人员将目标语言包整理成代码中可用的语言包后，引入项目；![英文语言包呈现](../../assets/i18n/6、英文语言包呈现.png)
 
 当出现新的需求的时候，需要不断重复上述过程。
 
@@ -52,7 +52,7 @@
 1. 不同语言编译成不同制品，部署到不同环境，代表的有 Angular i18n；
 2. 编译成一个制品，运行时根据语言环境加载对应语言资源，代表的有 Vue-i18n 、i18next、kiwi等；
 
-![前端国际化方案分类](/Users/mark/Desktop/tsc/PPT素材/前端国际化方案分类.png)
+![前端国际化方案分类](../../assets/i18n/前端国际化方案分类.png)
 
 Angular i18n 是这么做国际化的：
 
@@ -71,17 +71,17 @@ Angular i18n 是这么做国际化的：
 >
 > 其中可以包含一些给翻译人员提供的附加信息，使翻译人员能够更好地翻译
 >
-> ![image-20210713141926565](/Users/mark/Library/Application Support/typora-user-images/image-20210713141926565.png)
+> ![XLIFF示例](../../assets/i18n/XLIFF示例.png)
 >
 > 同时，也是因为 **XLIFF** 是一种标准的解决方案，应用市场上也衍生了一部分给翻译人员使用的 **XLIFF** 翻译工具，如 **XLIFF editor、Poeditor** 等，图中展示的是 **XLIFF editor** 的用法：
 >
-> ![image-20210713142412118](/Users/mark/Library/Application Support/typora-user-images/image-20210713142412118.png)
+> ![XLIFF-editor](../../assets/i18n/XLIFF-editor.png)
 >
 > #### ICU
 >
 > 为了国际化过程中需要根据各地的风俗和语言习惯，实现对数字、货币、时间、日期、和消息的格式化、解析，对字符串进行大小写转换、整理、搜索和排序等功能，**ICU** （International Components for Unicode，Unicode 国际化标准组件）应运而生，它其实是一套成熟、广泛使用的C/C++、Java和.NET 类库集。但我们可以利用其所提供的 [ICU 消息格式](http://userguide.icu-project.org/formatparse/messages) 定义解决我们翻译中常见的复数、选择占位等复杂形式，下图所示是用 **ICU消息格式** 表示复数的一种场景：
 >
-> ![image-20210713150931203](/Users/mark/Library/Application Support/typora-user-images/image-20210713150931203.png)
+> ![ICU复数示例](../../assets/i18n/ICU复数示例.png)
 
 但是，**Angluar i18n** 的方案应用到我们的项目也有一些问题：
 
