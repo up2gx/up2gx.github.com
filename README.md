@@ -1,2 +1,1 @@
-# up2gx.github.com
-github pages
+best wishes for you
