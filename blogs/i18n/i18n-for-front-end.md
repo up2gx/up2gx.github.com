@@ -143,10 +143,6 @@ export const sayHello = (name) => {
 
 而对于复数等复杂的翻译场景，可以直接在标记方法中写 `ICU message format` ：
 
-```html
-<span>{{ $tx('\{minutes, plural, =0 \{刚刚\} =1 \{一分钟前\} other \{# 分钟\}\}更新', \{minutes\}, '更新时间|使用 ICU 格式') }}</span> 
-```
-
 我们会使用 `intl-messageformat` 这个包去翻译上述  `ICU` 特殊标记。
 
 对于需要翻译的复杂 DOM 结构，提供 `Translate` 组件，以避免文本被 DOM 结构截断上下文信息，如：
