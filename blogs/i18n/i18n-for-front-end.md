@@ -144,7 +144,7 @@ export const sayHello = (name) => {
 而对于复数等复杂的翻译场景，可以直接在标记方法中写 `ICU message format` ：
 
 ```html
-<span>{{ $tx('{minutes, plural, =0 {刚刚} =1 {一分钟前} other {# 分钟}}更新', {minutes}, '更新时间|使用 ICU 格式') }}</span> 
+<span>{{ $tx('\{minutes, plural, =0 \{刚刚\} =1 \{一分钟前\} other \{# 分钟\}\}更新', \{minutes\}, '更新时间|使用 ICU 格式') }}</span> 
 ```
 
 我们会使用 `intl-messageformat` 这个包去翻译上述  `ICU` 特殊标记。
